@@ -1,6 +1,8 @@
 .venv/
 __pycache__/
 *.pyc
-*.pkl
 data/cache/
 plbets.db
+# NOTE: *.pkl is intentionally NOT excluded — the trained model
+# (models_out/model.pkl) must be in the build context so the image can run
+# without retraining at boot.

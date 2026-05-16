@@ -18,9 +18,10 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY app/ ./app/
 COPY ml/ ./ml/
 COPY data/ ./data/
+COPY models_out/ ./models_out/
 
-# Ensure runtime dirs exist
-RUN mkdir -p data/raw data/processed data/cache models_out
+# Ensure runtime dirs exist (data/cache is gitignored so it won't be in the build context)
+RUN mkdir -p data/raw data/processed data/cache
 
 EXPOSE 8000
 
