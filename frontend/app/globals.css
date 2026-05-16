@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary:   #0A0E1A;
+  --bg-secondary: #111827;
+  --bg-tertiary:  #1F2937;
+  --accent-green: #00FF87;
+  --accent-amber: #F59E0B;
+  --accent-red:   #EF4444;
+  --text-primary: #F9FAFB;
+  --text-muted:   #6B7280;
+  --border:       #1F2937;
+  --font-display: 'Bebas Neue';
+  --font-body:    'DM Sans';
+  --font-mono:    'JetBrains Mono';
+}
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 800px at 80% -10%, rgba(0,255,135,0.05), transparent 50%),
+    radial-gradient(900px 700px at -10% 110%, rgba(245,158,11,0.04), transparent 50%);
+}
+
+::selection {
+  background: rgba(0, 255, 135, 0.3);
+  color: var(--text-primary);
+}
+
+/* Hide scrollbars on the fixture rail but keep the scroll behaviour */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Subtle pulsing dot for "live" indicators */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.live-dot { animation: pulse-dot 1.6s infinite; }
+
+/* The "VS" divider in the prediction panel */
+.vs-divider {
+  background: radial-gradient(circle, rgba(0,255,135,0.25), transparent 70%);
+  box-shadow: 0 0 24px rgba(0,255,135,0.45);
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 0%, var(--bg-tertiary) 50%, var(--bg-secondary) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}

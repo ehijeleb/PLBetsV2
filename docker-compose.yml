@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: plbets-backend
+    ports:
+      - "8000:8000"
+    environment:
+      FOOTBALL_DATA_API_KEY: ${FOOTBALL_DATA_API_KEY:-}
+      DATABASE_URL: sqlite:////app/plbets.db
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+    volumes:
+      # Persist trained models, the SQLite DB, and any downloaded CSVs across restarts.
+      - ./backend/data:/app/data
+      - ./backend/models_out:/app/models_out
+      - plbets_db:/app/db
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: plbets-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  plbets_db: {}

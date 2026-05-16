@@ -1,0 +1,32 @@
+# Render Blueprint — push this file with the repo and Render will offer a
+# one-click "New Blueprint Instance" deploy that wires everything up.
+#
+# After deploy, set the three `sync: false` env vars in the Render dashboard
+# under the service's "Environment" tab. They're listed below as comments.
+
+services:
+  - type: web
+    name: plbets-backend
+    runtime: docker
+    plan: free                 # bump to "starter" ($7/mo) to avoid cold starts
+    region: oregon             # change if your Supabase project is elsewhere
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # Free key from https://www.football-data.org — set via dashboard.
+      - key: FOOTBALL_DATA_API_KEY
+        sync: false
+      # Supabase Postgres URL.
+      # In Supabase: Settings → Database → "Connection string" → URI.
+      # Use the POOLER URL (port 6543, transaction mode) and prefix with
+      # `postgresql+psycopg2://` so SQLAlchemy picks the right driver.
+      # Example:
+      #   postgresql+psycopg2://postgres.<ref>:<pw>@aws-0-<region>.pooler.supabase.com:6543/postgres
+      - key: DATABASE_URL
+        sync: false
+      # Comma-separated list. After Vercel deploys, add the production URL
+      # here, e.g. "https://plbets.vercel.app,http://localhost:3000".
+      - key: CORS_ORIGINS
+        sync: false

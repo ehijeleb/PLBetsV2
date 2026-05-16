@@ -1,0 +1,28 @@
+# Env
+.env
+.env.local
+**/.env
+**/.env.local
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+backend/plbets.db
+backend/data/cache/
+backend/data/processed/
+# NOTE: backend/models_out/*.pkl is intentionally NOT ignored — the trained
+# model ships with the repo so Render / docker-compose can boot without a
+# slow training step. The weekly retrain GitHub Action commits a fresh one.
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/settings.local.json
