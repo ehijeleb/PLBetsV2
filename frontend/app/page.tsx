@@ -41,9 +41,9 @@ export default function HomePage() {
         </div>
 
         {isLoading ? (
-          <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+          <div className="flex gap-3 overflow-x-auto pretty-scrollbar pb-2">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Skeleton key={i} className="min-w-[320px] h-32 rounded-2xl" />
+              <Skeleton key={i} className="min-w-[340px] h-32 rounded-2xl" />
             ))}
           </div>
         ) : fixtures.length === 0 ? (
@@ -56,7 +56,7 @@ export default function HomePage() {
             </p>
           </Card>
         ) : (
-          <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+          <div className="flex gap-3 overflow-x-auto pretty-scrollbar pb-3">
             {fixtures.map((f) => (
               <MatchCard
                 key={f.id}

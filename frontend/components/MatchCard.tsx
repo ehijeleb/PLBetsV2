@@ -25,7 +25,7 @@ export function MatchCard({ fixture, onAnalyse, preProb }: MatchCardProps) {
   return (
     <motion.div
       whileHover={{ y: -3 }}
-      className="min-w-[320px] bg-bg-secondary border border-line rounded-2xl p-4 flex flex-col gap-3"
+      className="min-w-[340px] bg-bg-secondary border border-line rounded-2xl p-4 flex flex-col gap-3"
     >
       <div className="flex items-center justify-between text-[11px] uppercase tracking-widest text-ink-muted">
         <span>{fmtKickoff(fixture.utc_date)}</span>
@@ -59,16 +59,16 @@ export function MatchCard({ fixture, onAnalyse, preProb }: MatchCardProps) {
 
 function TeamSide({ team, side }: { team: { name: string; crest?: string | null; tla?: string | null }; side: "home" | "away" }) {
   return (
-    <div className={`flex-1 flex items-center gap-2 ${side === "away" ? "flex-row-reverse text-right" : ""}`}>
+    <div className={`flex-1 min-w-0 flex items-center gap-2 ${side === "away" ? "flex-row-reverse text-right" : ""}`}>
       {team.crest ? (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={team.crest} alt="" className="w-9 h-9 object-contain" />
+        <img src={team.crest} alt="" className="w-9 h-9 object-contain shrink-0" />
       ) : (
-        <div className="w-9 h-9 grid place-items-center rounded-md bg-bg-tertiary text-xs font-mono">
+        <div className="w-9 h-9 grid place-items-center rounded-md bg-bg-tertiary text-xs font-mono shrink-0">
           {team.tla || team.name.slice(0, 3).toUpperCase()}
         </div>
       )}
-      <div className="text-sm font-semibold leading-tight truncate">{team.name}</div>
+      <div className="text-sm font-semibold leading-tight truncate min-w-0">{team.name}</div>
     </div>
   );
 }

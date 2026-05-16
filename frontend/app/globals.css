@@ -41,6 +41,36 @@ body {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* Subtle horizontal scrollbar — invisible until row is hovered, glows green on thumb hover */
+.pretty-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.2s ease;
+}
+.pretty-scrollbar:hover {
+  scrollbar-color: var(--bg-tertiary) transparent;
+}
+.pretty-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.pretty-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+  margin: 0 8px;
+}
+.pretty-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+.pretty-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+}
+.pretty-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, rgba(0, 255, 135, 0.6), var(--accent-green));
+  box-shadow: 0 0 8px rgba(0, 255, 135, 0.4);
+}
+
 /* Subtle pulsing dot for "live" indicators */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
